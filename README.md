@@ -10,3 +10,7 @@ The data specific to the user will be if not availble, will be requested from th
 The project is meant to have two parallel implementations. 
 1. PHP 7
 1. Django
+
+##toDo
+
+1. get css,bootsrtap and jquery cdns and create base.html template
