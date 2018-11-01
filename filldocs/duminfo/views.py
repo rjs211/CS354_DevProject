@@ -95,8 +95,16 @@ def viewPdf(request,id):
     contFile = open(dirpath + '/content.xml', 'w')
     contFile.writelines(allLines)
     contFile.close()
+    # command1 = 'zip -r '+dirpath+'/Final.odt '+dirpath+'/mimetype '+dirpath+'/*'
+    command1 = 'bash createodt.sh '+dirpath+'/'
+    # print (command1)
+    os.system(command1)
+    # os.system('ls')
+    pdfpath = 'duminfo/sessFolder/'+dirname+'/final.pdf'
+    # 'duminfo/google.pdf'
 
-    args={'head1': formName.get(id,'UnknownForm'),'path':'duminfo/google.pdf'}
+
+    args={'head1': formName.get(id,'UnknownForm'),'path':pdfpath}
     return render(request, 'duminfo/dum_pdfdis.html',args)
 
 
