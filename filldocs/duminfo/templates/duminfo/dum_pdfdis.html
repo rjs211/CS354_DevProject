@@ -1,6 +1,6 @@
 {% extends 'base_layout.html' %}
-
+{% load static%}
 {% block content %}
 <h1>{{ head1 }}</h1>
-<iframe src="{( path )}" style="height:200px;width:300px;"></iframe>
+<iframe src="{% static path %}" style="height:2000px;width:800px;"></iframe>
 {% endblock %}

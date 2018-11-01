@@ -5,7 +5,13 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from .formDicts import formDict,formName
 from django.contrib.auth.decorators import login_required
-
+from django.http import FileResponse, Http404
+import os
+import random
+from random import randint
+from datetime import datetime
+import zipfile
+from filldocs.ceti_dict import formPhDict,necdict
 
 # Create your views here.
 from .forms import *
@@ -65,10 +71,32 @@ def updatedum(request,id):
 
 @login_required(login_url='/accounts/login/')
 def viewPdf(request,id):
-    args={'head1': formName.get(id,'UnknownForm'),'path':'./google.pdf'}
-    return render(request, 'accounts/dummy.html',args)
+    random.seed(datetime.now())
+    filename=str(request.user.id) +'_'+str(id)
+    dirname = str(request.user.id) +'_'+ str(randint(100000,999999))
+    formroot = 'duminfo/static/duminfo/'
+    dirpath = formroot+"/sessFolder/"+dirname
+    orgname = formroot+'orgForm/'+'Form'+str(id)+'.odt'
+    if not os.path.exists(dirpath):
+        os.makedirs(dirpath)
+    zip_ref = zipfile.ZipFile(orgname, 'r')
+    zip_ref.extractall(dirpath)
+    zip_ref.close()
+    du = request.user.dumuser
+    necFields = necdict.get(int(id),necdict[1])
 
+    contFile = open(dirpath+'/content.xml','r')
+    allLines = contFile.read()
+    contFile.close()
 
+    for fl in necFields:
+        allLines= allLines.replace(formPhDict[fl],str(getattr(du,fl)))
 
+    contFile = open(dirpath + '/content.xml', 'w')
+    contFile.writelines(allLines)
+    contFile.close()
+
+    args={'head1': formName.get(id,'UnknownForm'),'path':'duminfo/google.pdf'}
+    return render(request, 'duminfo/dum_pdfdis.html',args)
 
 

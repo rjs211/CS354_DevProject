@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="form_detail">
+    <div class="article">
+        <h2>{{ certif.certifName }}</h2>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#dets">ShowDetails</button>
+          <div id="dets" class="collapse">
+              <p>{{ certif.certifDesc }}</p>
+              <p>{{ certif.id }}</p>
+          </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base_layout.html' %}
+
+{% block content%}
+    <h1>Certificates List</h1>
+    <div class="certifs">
+    {% for certif in certifs %}
+        <div class="certif">
+            <h2><a href="{% url 'certifs:getCertif' id=certif.id %}">{{ certif.certifName }}</a></h2>
+            <p>{{ certif.snippet }}</p>
+            <p>{{ certif.id }}</p>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
