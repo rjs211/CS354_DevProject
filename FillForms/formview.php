@@ -1,11 +1,6 @@
-
-
 <?php include('server.php') ?>
-<?php include('dict.php') ?>
-
-<?php $formname = $_POST['formname'];
-      $formfields = $forms[$formname];
- ?>
+<?php $formname = $_SESSION['formname1'];
+      $formfields = $forms[$formname]; ?>
 
 <!DOCTYPE html>
 <html>
@@ -17,10 +12,10 @@
   <div class="header">
   	<h2><?php echo $formname;?></h2>
   </div>
-
-  <form method="post" action="server.php">
+  <form method="post" action="formview.php">
   	<?php include('errors.php'); ?>
-
+    <input type="hidden" name="formname" value="<?php echo  $formname ?>">
+    <input type="hidden" name="prev_page" value="form_view">
     <?php foreach ($formfields as $field) { ?>
     <div class="input-group">
   		<label><?php echo $field ?></label>
@@ -35,7 +30,6 @@
   	</div>
     <?php } ?>
   	<div class="input-group">
-      <?php $_SESSION['formname'] = $formname ?>
   		<button type="submit" class="btn" name="form_sub">Submit</button>
   	</div>
   </form>

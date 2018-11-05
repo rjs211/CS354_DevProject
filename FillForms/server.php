@@ -84,23 +84,25 @@ if (isset($_POST['login_user'])) {
 
 //handling the form submission
 if (isset($_POST['form_sub'])){
-        $formname = $_SESSION['formname'];
+        $username = mysqli_real_escape_string($db, $_SESSION['username']);
+        echo $formname = $_SESSION['formname1'];
         $formfields = $forms[$formname];
-        $formvalues = array();
         foreach ($formfields as $field) {
           $i = mysqli_real_escape_string($db, $_POST[$field]);
           if (empty($i)) {
-            array_push($errors, "$i is required");
+            array_push($errors, $field . " is required");
           }
-          array_push($formvalues, $_POST[$field]);
         }
           if (count($errors) == 0) {
-            $fields = implode(", ",$formfields);
-            $values = implode(", ",$formvalues);
-
-            $query = "INSERT INTO users($fields) VALUES ($values)";
-            $results = mysqli_query($db, $query);
-            header('location: index.php');
+            foreach ($formfields as $field) {
+              $f = mysqli_real_escape_string($db, $field);
+              $fv = mysqli_real_escape_string($db, $_POST[$field]);
+              $query = "UPDATE users SET $f = '$fv' WHERE username = '$username'";
+              mysqli_query($db, $query);
+            }
+            $_SESSION['certifname'] = $formname;
+            header('location: createpdf.php');
       }
+
 }
 ?>

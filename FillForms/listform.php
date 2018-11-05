@@ -1,12 +1,15 @@
 <?php include('dict.php') ?>
-<?php foreach($forms as $form => $fields) { ?>
-    <p><?php echo $form;  ?><p><br />
-<?php } ?>
+<?php
+session_start(); 
+if(isset($_POST['formname'])){
+  $_SESSION['formname1'] = $_POST['formname'];
+  header('location: formview.php');
+  exit;
+}
+ ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-
 <link rel="stylesheet" type="text/css" href="style.css">
     <title>Form list</title>
   </head>
@@ -16,7 +19,7 @@
         <div>
               <h2><?php echo $form;  ?></h2> <br />
           <p>Some text inside the form</p><br />
-          <form method="post" action="formview.php">
+          <form method="post" action="listform.php">
               <input type="hidden" name="formname" value="<?php echo $form ?>">
               <input type="submit">
           </form>
