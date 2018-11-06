@@ -45,9 +45,10 @@ chdir($dirpath);
 shell_exec("zip -r " . $formname . ".odt mimetype .");
 chdir($dirpath);
 echo shell_exec("chmod -R 777 .");
-//echo shell_exec("export HOME=.");
-//$result = shell_exec('libreoffice --headless -convert-to pdf form1.odt');
-//echo $result;
-$_SESSION['pathname'] = "http://localhost/FillForms/". $foldername .  "/" .$formname. ".odt";
+putenv('HOME=/tmp');
+putenv('LD_LIBRARY_PATH');
+$result = shell_exec("libreoffice --headless --convert-to pdf:writer_pdf_Export ".$formname.".odt  2>&1");
+echo shell_exec("chmod -R 777 .");
+$_SESSION['pathname'] = "http://localhost/FillForms/". $foldername .  "/" .$formname. ".pdf";
 header('location: dispcertif.php');
   ?>

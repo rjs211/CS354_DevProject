@@ -7,7 +7,7 @@
   </head>
   <body>
 <h1><?php echo $_SESSION['certifname'] ?> is ready</h1>
-<iframe style="border:0" title="<?php echo $_SESSION['certifname'] ?>" src="<?php echo $_SESSION['pathname'] ?>" frameborder="1" scrolling="auto" height=0 width=0 ></iframe>
+<iframe id="fred" style="border:1px solid #666CCC" title="<?php echo $_SESSION['certifname'] ?>" src="<?php echo $_SESSION['pathname'] ?>" frameborder="1" scrolling="auto" height="1100" width="850" ></iframe>
 <p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
   <p> <a href="listform.php" style="color: blue;">Certificates</a> </p>
 
