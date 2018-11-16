@@ -5,6 +5,7 @@ class Certif(models.Model):
     certifName = models.CharField(max_length=100)
     # certifSlug = models.SlugField()
     certifDesc = models.TextField()
+    certifFormId = models.IntegerField(default=1)
     # add in author later
 
     def __str__(self):

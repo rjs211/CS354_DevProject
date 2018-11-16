@@ -104,7 +104,7 @@ def viewPdf(request,id):
     # 'duminfo/google.pdf'
 
 
-    args={'head1': formName.get(id,'UnknownForm'),'path':pdfpath}
+    args={'head1': formName.get(int(id),'UnknownForm'),'path':pdfpath}
     return render(request, 'duminfo/dum_pdfdis.html',args)
 
 

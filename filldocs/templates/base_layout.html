@@ -10,6 +10,8 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" media="all"
       href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css"    />
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
 
 
 
@@ -18,22 +20,27 @@
         <header class = "wrapper">
 
             <nav class = "navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Fill Docs</a>
 
                 <ul class="nav navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
                     <li>
                         <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-outline-light">Logout</button>
                         </form>
                     </li>
+                    {% else%}
+                    <li class="nav-item"><a class="nav-link" href = "{% url 'accounts:login' %}" >Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href = "{% url 'accounts:signup' %}" >Sign Up</a></li>
+                    {% endif %}
                 </ul>
 
             </nav>
-            <h1>fillForms</h1>
+            <!--<h1>fillForms</h1>-->
 
         </header>
-        <div class="wrapper container">
+        <div class="wrapper container" style="margin-top: 5em;">
             {% block content %}
             {% endblock %}
         </div>
@@ -42,7 +49,7 @@
     $( ".date-input" ).datepicker({
       changeMonth: true,
       changeYear: true,
-      yearRange: "1900:2012",
+      yearRange: "1900:2034",
       dateFormat: 'yy-mm-dd'
       // You can put more options here.
 

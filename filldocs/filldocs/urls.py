@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from accounts import views as accviews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', accviews.login_view),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^certifs/', include('certifs.urls')),
     url(r'^duminfo/', include('duminfo.urls')),

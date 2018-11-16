@@ -20,13 +20,14 @@ def signup_view(request):
 def dummy_view(request):
     return render(request,'accounts/dummy.html')
 
+
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request,user)
-            return redirect('/accounts/dummy/')
+            return redirect('/certifs/')
 
     else:
         form = AuthenticationForm()
@@ -36,7 +37,7 @@ def login_view(request):
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
-        return redirect('/accounts/dummy/')
+        return redirect('/accounts/login/')
 
     # # else:
     # #     form = AuthenticationForm()

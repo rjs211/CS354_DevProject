@@ -6,5 +6,5 @@ formDict = {
 
 formName = {
     1:'MyForm',
-    2:'dummyForm',
+    2:'Form2 yay',
 }

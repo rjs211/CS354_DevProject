@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 
 class DumUser(models.Model):
-    f1 = models.CharField(max_length=100,null=True)
+    f1 = models.CharField(max_length=100,null=True,verbose_name="Ful Nam",help_text='Unique identifier for the student s')
     f2 = models.CharField(max_length=20,null=True)
     f3 = models.CharField(max_length=3,null=True)
     f4 = models.DateField(null=True)

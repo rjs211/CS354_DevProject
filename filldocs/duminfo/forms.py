@@ -16,5 +16,5 @@ class DumUserForm2(ModelForm):
 
     class Meta:
         model = DumUser
-        fields = necdict[1]
+        fields = necdict[2]
         widgets = getFormWidget(2)

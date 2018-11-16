@@ -3,4 +3,7 @@
 {% block content %}
 {% csrf_token %}
 <h1>Done Signup dummy</h1>
+<div class="w3-container">
+  <a href="{% url 'certifs:list'%}" class="btn btn-info" role="button">All Forms</a>
+</div>
 {% endblock %}
